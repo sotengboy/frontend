@@ -9,15 +9,15 @@ import {
   CFormLabel,
   CFormInput,
   CFormTextarea,
-  CFormSelect,
   CButton,
 } from '@coreui/react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 // import { DocsExample } from 'src/components'
 import { getPostById, updatePost } from '../../../functions/posts'
 
 const PostEdit = (props) => {
   const [posts, setPostEdit] = useState({})
+  const navigate = useNavigate()
   const { id } = useParams()
 
   useEffect(() => {
@@ -38,6 +38,7 @@ const PostEdit = (props) => {
     updatePost(id, data)
       .then((res) => {
         alert(`Post Update as ${e} Successfully`)
+        navigate(`/post/${id}`, { replace: true })
       })
       .catch((error) => alert('Update Error', error))
   }

@@ -53,6 +53,7 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 // Posts
 const Posts = React.lazy(() => import('./views/pages/posts/Posts'))
 const PostEdit = React.lazy(() => import('./views/pages/posts/PostEdit'))
+const PostAdd = React.lazy(() => import('./views/pages/posts/PostAdd'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -101,6 +102,7 @@ const routes = [
   { path: '/widgets', name: 'Widgets', element: Widgets },
   { path: '/posts', name: 'Posts', element: Posts },
   { path: '/post/:id', name: 'Edit Post', element: PostEdit },
+  { path: '/post/add', name: 'Add Post', element: PostAdd },
 ]
 
 export default routes

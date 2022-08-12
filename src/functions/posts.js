@@ -15,3 +15,6 @@ export const movePost = async (id) => {
   console.log('DATA TRASH', data)
   return await axios.patch(`${process.env.REACT_APP_API}/article/${id}`, data)
 }
+export const createPost = async (posts) => {
+  return await axios.post(`${process.env.REACT_APP_API}/article`, posts)
+}

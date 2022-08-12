@@ -9,35 +9,27 @@ import {
   CFormLabel,
   CFormInput,
   CFormTextarea,
-  CFormSelect,
   CButton,
 } from '@coreui/react'
-import { useParams } from 'react-router-dom'
 // import { DocsExample } from 'src/components'
-import { getPostById, updatePost } from '../../../functions/posts'
+import { useNavigate } from 'react-router-dom'
 
-const PostEdit = (props) => {
-  const [posts, setPostEdit] = useState({})
-  const { id } = useParams()
+import { createPost } from '../../../functions/posts'
 
-  useEffect(() => {
-    if (posts) {
-      getPostById(id).then((res) => {
-        console.log('DATA', res.data)
-        setPostEdit(res.data)
-      })
-    }
-  }, [])
+const PostAdd = () => {
+  const [posts, setPostAdd] = useState({})
+  const navigate = useNavigate()
   const handleChange = (e) => {
-    setPostEdit({ ...posts, [e.target.name]: e.target.value })
+    setPostAdd({ ...posts, [e.target.name]: e.target.value })
   }
 
   const handleUpdate = (e) => {
     const data = { ...posts, status: e }
     console.log('UPDATE SUBMIT', data)
-    updatePost(id, data)
+    createPost(data)
       .then((res) => {
-        alert(`Post Update as ${e} Successfully`)
+        alert(`Post Created as ${e} Successfully`)
+        navigate('/posts', { replace: true })
       })
       .catch((error) => alert('Update Error', error))
   }
@@ -46,10 +38,10 @@ const PostEdit = (props) => {
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>Edit Post</strong>
+            <strong>Add Post</strong>
           </CCardHeader>
           <CCardBody>
-            <p className="text-medium-emphasis small">Edit Form {id}</p>
+            <p className="text-medium-emphasis small">Add Form</p>
 
             <CForm className="mb-3">
               <CFormLabel>Title</CFormLabel>
@@ -88,4 +80,4 @@ const PostEdit = (props) => {
   )
 }
 
-export default PostEdit
+export default PostAdd
