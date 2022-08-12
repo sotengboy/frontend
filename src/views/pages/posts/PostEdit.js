@@ -21,13 +21,11 @@ const PostEdit = (props) => {
   const { id } = useParams()
 
   useEffect(() => {
-    if (posts) {
-      getPostById(id).then((res) => {
-        console.log('DATA', res.data)
-        setPostEdit(res.data)
-      })
-    }
-  }, [])
+    getPostById(id).then((res) => {
+      console.log('DATA', res.data)
+      setPostEdit(res.data)
+    })
+  }, [id])
   const handleChange = (e) => {
     setPostEdit({ ...posts, [e.target.name]: e.target.value })
   }

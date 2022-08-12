@@ -63,6 +63,11 @@ const _nav = [
         name: 'Add New',
         to: '/post/add',
       },
+      {
+        component: CNavItem,
+        name: 'Preview',
+        to: '/blogs',
+      },
     ],
   },
   {
