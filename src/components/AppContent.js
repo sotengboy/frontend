@@ -4,7 +4,6 @@ import { CContainer, CSpinner } from '@coreui/react'
 
 // routes config
 import routes from '../routes'
-const PostEdit = React.lazy(() => import('../views/pages/posts/PostEdit'))
 
 const AppContent = () => {
   return (
@@ -24,8 +23,8 @@ const AppContent = () => {
               )
             )
           })}
-          <Route path="/post/:id" element={PostEdit} exact />
-          {/* <Route path="/" element={<Navigate to="dashboard" replace />} /> */}
+          {/* <Route path="/post/:id" element={PostEdit} exact /> */}
+          <Route path="/" element={<Navigate to="dashboard" replace />} />
         </Routes>
       </Suspense>
     </CContainer>

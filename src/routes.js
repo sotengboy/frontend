@@ -1,5 +1,4 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
@@ -53,6 +52,7 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 // Posts
 const Posts = React.lazy(() => import('./views/pages/posts/Posts'))
+const PostEdit = React.lazy(() => import('./views/pages/posts/PostEdit'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -100,7 +100,7 @@ const routes = [
   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
   { path: '/posts', name: 'Posts', element: Posts },
-  // { path: '/post', name: 'Edit Post', element: PostEdit },
+  { path: '/post/:id', name: 'Edit Post', element: PostEdit },
 ]
 
 export default routes

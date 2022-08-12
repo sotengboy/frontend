@@ -17,12 +17,18 @@ import {
   CTabContent,
   CTabPane,
 } from '@coreui/react'
+import CIcon from '@coreui/icons-react'
+import { cilPen, cilTrash } from '@coreui/icons'
 // import { DocsExample } from 'src/components'
-import { getPosts } from '../../../functions/posts'
+// import { Link } from 'react-router-dom'
+
+import { getPosts, movePost } from '../../../functions/posts'
 
 const Posts = () => {
   const [activeKey, setActiveKey] = useState(1)
   const [posts, setPosts] = useState([])
+  // const currentLocation = useLocation().pathname
+  // console.log('CURRENT LOC', currentLocation)
 
   useEffect(() => {
     if (posts.length <= 0) {
@@ -32,6 +38,11 @@ const Posts = () => {
       })
     }
   }, [posts])
+  const handleTrash = (e) => {
+    movePost(e)
+      .then(() => window.location.reload())
+      .catch((error) => alert('Failed to delete post'))
+  }
   return (
     <CRow>
       <CCol xs={12}>
@@ -89,8 +100,11 @@ const Posts = () => {
                           <CTableHeaderCell scope="row">{p.title}</CTableHeaderCell>
                           <CTableDataCell>{p.category}</CTableDataCell>
                           <CTableDataCell>
-                            <a href={`/post/${p.id}`}>Edit</a>
-                            <button>Delete</button>
+                            <a href={`/#/post/${p.id}`} className="p-2">
+                              <CIcon icon={cilPen} size="m" />
+                            </a>
+
+                            <CIcon icon={cilTrash} size="m" onClick={() => handleTrash(p.id)} />
                           </CTableDataCell>
                         </CTableRow>
                       ))}
@@ -114,8 +128,10 @@ const Posts = () => {
                           <CTableHeaderCell scope="row">{p.title}</CTableHeaderCell>
                           <CTableDataCell>{p.category}</CTableDataCell>
                           <CTableDataCell>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <a href={`/#/post/${p.id}`} className="p-2">
+                              <CIcon icon={cilPen} size="m" />
+                            </a>
+                            <CIcon icon={cilTrash} size="m" onClick={() => handleTrash(p.id)} />
                           </CTableDataCell>
                         </CTableRow>
                       ))}
@@ -139,8 +155,10 @@ const Posts = () => {
                           <CTableHeaderCell scope="row">{p.title}</CTableHeaderCell>
                           <CTableDataCell>{p.category}</CTableDataCell>
                           <CTableDataCell>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <a href={`/#/post/${p.id}`} className="p-2">
+                              <CIcon icon={cilPen} size="m" />
+                            </a>
+                            <CIcon icon={cilTrash} size="m" onClick={() => handleTrash(p.id)} />
                           </CTableDataCell>
                         </CTableRow>
                       ))}
