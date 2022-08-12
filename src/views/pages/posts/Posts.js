@@ -38,6 +38,9 @@ const Posts = () => {
       })
     }
   }, [posts])
+  const publish = posts.filter((post) => post.status === 'publish').length
+  const draft = posts.filter((post) => post.status === 'draft').length
+  const trash = posts.filter((post) => post.status === 'trash').length
   const handleTrash = (e) => {
     movePost(e)
       .then(() => window.location.reload())
@@ -60,7 +63,7 @@ const Posts = () => {
                   active={activeKey === 1}
                   onClick={() => setActiveKey(1)}
                 >
-                  Published
+                  Published ({publish})
                 </CNavLink>
               </CNavItem>
               <CNavItem>
@@ -69,7 +72,7 @@ const Posts = () => {
                   active={activeKey === 2}
                   onClick={() => setActiveKey(2)}
                 >
-                  Drafts
+                  Drafts ({draft})
                 </CNavLink>
               </CNavItem>
               <CNavItem>
@@ -78,7 +81,7 @@ const Posts = () => {
                   active={activeKey === 3}
                   onClick={() => setActiveKey(3)}
                 >
-                  Trashed
+                  Trashed ({trash})
                 </CNavLink>
               </CNavItem>
             </CNav>
