@@ -17,18 +17,21 @@ import {
   CTabContent,
   CTabPane,
 } from '@coreui/react'
+import { useParams, Link } from 'react-router-dom'
 // import { DocsExample } from 'src/components'
-import { getPosts } from '../../../functions/posts'
+import { getPostById } from '../../../functions/posts'
 
-const Posts = () => {
+const PostEdit = (props) => {
   const [activeKey, setActiveKey] = useState(1)
-  const [posts, setPosts] = useState([])
+  const [posts, setPostEdit] = useState([])
+  //   const [searchParams] = useSearchParams()
+  const { id } = useParams
 
   useEffect(() => {
     if (posts.length <= 0) {
-      getPosts('10', '0').then((res) => {
+      getPostById(id).then((res) => {
         console.log('DATA', res.data)
-        setPosts(res.data.articles)
+        setPostEdit(res.data.articles)
       })
     }
   }, [posts])
@@ -37,10 +40,10 @@ const Posts = () => {
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>All Posts</strong>
+            <strong>All PostEdit</strong>
           </CCardHeader>
           <CCardBody>
-            <p className="text-medium-emphasis small">List of Created Posts</p>
+            <p className="text-medium-emphasis small">List of Created PostEdit</p>
             {/* <p>{JSON.stringify(posts)}</p> */}
             <CNav variant="tabs" role="tablist">
               <CNavItem>
@@ -89,7 +92,7 @@ const Posts = () => {
                           <CTableHeaderCell scope="row">{p.title}</CTableHeaderCell>
                           <CTableDataCell>{p.category}</CTableDataCell>
                           <CTableDataCell>
-                            <a href={`/post/${p.id}`}>Edit</a>
+                            <Link to={`/post/${p.id}`}>Edite</Link>
                             <button>Delete</button>
                           </CTableDataCell>
                         </CTableRow>
@@ -155,4 +158,4 @@ const Posts = () => {
   )
 }
 
-export default Posts
+export default PostEdit
