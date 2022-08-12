@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { CCard, CCardBody, CCardHeader, CCol, CRow } from '@coreui/react'
+import {
+  CCard,
+  CCardBody,
+  CCardHeader,
+  CCol,
+  CRow,
+  CPagination,
+  CPaginationItem,
+} from '@coreui/react'
 // import { DocsExample } from 'src/components'
 import { useNavigate } from 'react-router-dom'
 
@@ -25,6 +33,13 @@ const PostAdd = () => {
             </CCardBody>
           </CCard>
         ))}
+        <CPagination aria-label="Page navigation example">
+          <CPaginationItem>Previous</CPaginationItem>
+          <CPaginationItem>1</CPaginationItem>
+          <CPaginationItem>2</CPaginationItem>
+          <CPaginationItem>3</CPaginationItem>
+          <CPaginationItem>Next</CPaginationItem>
+        </CPagination>
       </CCol>
     </CRow>
   )
